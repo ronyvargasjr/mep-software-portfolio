@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | MEP Engineer &amp; Software Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ─────────────────────────────────────────
+       RESET & TOKENS
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-0: #070d1b;
+      --bg-1: #0c1526;
+      --bg-2: #111e34;
+      --bg-3: #16263f;
+      --border: #1c2e4a;
+      --border-hi: #2a4470;
+      --mep: #22d3ee;
+      --sw:  #818cf8;
+      --amber: #fbbf24;
+      --green: #34d399;
+      --text-1: #e2edff;
+      --text-2: #7a9bbf;
+      --text-3: #3d5f80;
+      --font: 'Outfit', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      --nav-h: 62px;
+      --radius: 12px;
+      --trans: 0.28s ease;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      background: var(--bg-0);
+      color: var(--text-1);
+      font-family: var(--font);
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-1); }
+    ::-webkit-scrollbar-thumb { background: var(--mep); border-radius: 2px; }
+
+    img { display: block; }
+    a { text-decoration: none; }
+
+    /* ─────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(7,13,27,.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(34,211,238,.08);
+      transition: border-color var(--trans);
+    }
+
+    .nav-logo {
+      font-family: var(--mono); font-weight: 600; font-size: 1.05rem;
+      color: var(--mep); letter-spacing: 2px;
+    }
+
+    .nav-menu { display: flex; gap: .25rem; list-style: none; }
+
+    .nav-menu a {
+      display: block; padding: .4rem .85rem;
+      font-size: .8rem; font-weight: 500; letter-spacing: .4px;
+      text-transform: uppercase; color: var(--text-2);
+      border-radius: 6px; transition: all var(--trans);
+    }
+    .nav-menu a:hover, .nav-menu a.active {
+      color: var(--mep); background: rgba(34,211,238,.1);
+    }
+
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--mep); border-radius: 2px;
+      transition: all .3s ease;
+    }
+
+    /* ─────────────────────────────────────────
+       SECTION SHELL
+    ───────────────────────────────────────── */
+    section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      padding: calc(var(--nav-h) + 3.5rem) 2rem 3.5rem;
+    }
+
+    .wrap { max-width: 1160px; margin: 0 auto; }
+
+    /* Section header */
+    .sh { text-align: center; margin-bottom: 3.25rem; }
+    .sh-tag {
+      display: inline-block; font-family: var(--mono);
+      font-size: .7rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--mep); opacity: .8; margin-bottom: .6rem;
+    }
+    .sh-tag.sw-c { color: var(--sw); }
+    .sh-tag.mep-c { color: var(--mep); }
+    .sh h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 700; line-height: 1.15;
+      background: linear-gradient(130deg, var(--text-1) 40%, var(--text-2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .sh-bar {
+      width: 52px; height: 3px; margin: .9rem auto 0; border-radius: 2px;
+      background: linear-gradient(90deg, var(--mep), var(--sw));
+    }
+    .sh-bar.mep-bar { background: linear-gradient(90deg, var(--mep), rgba(34,211,238,.1)); }
+    .sh-bar.sw-bar  { background: linear-gradient(90deg, var(--sw), rgba(129,140,248,.1)); }
+
+    /* Alternating section bg */
+    #about    { background: var(--bg-1); }
+    #mep      { background: var(--bg-0); }
+    #software { background: var(--bg-1); }
+    #skills   { background: var(--bg-0); }
+    #contact  { background: var(--bg-1); }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    #hero {
+      display: flex; flex-direction: column; justify-content: center;
+      padding-left: clamp(1.5rem, 6vw, 5rem);
+      padding-right: clamp(1.5rem, 6vw, 5rem);
+      position: relative; overflow: hidden;
+      background: var(--bg-0);
+    }
+
+    /* Grid + glow backgrounds */
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(34,211,238,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+    #hero::after {
+      content: '';
+      position: absolute; top: -15%; left: -5%;
+      width: 55%; height: 85%;
+      background: radial-gradient(ellipse, rgba(34,211,238,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-glow-sw {
+      position: absolute; bottom: -20%; right: -5%;
+      width: 45%; height: 70%;
+      background: radial-gradient(ellipse, rgba(129,140,248,.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: .8rem; color: var(--mep);
+      letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp .7s ease .15s forwards;
+    }
+
+    .hero-name {
+      font-size: clamp(2.8rem, 8.5vw, 6.5rem);
+      font-weight: 900; line-height: .95; letter-spacing: -2px;
+      margin-bottom: 1.4rem;
+      opacity: 0; animation: fadeUp .75s ease .3s forwards;
+    }
+    .hero-name span {
+      display: block;
+      background: linear-gradient(130deg, #e2edff 0%, #38bdf8 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title {
+      font-size: clamp(1rem, 2.2vw, 1.35rem); font-weight: 500;
+      color: var(--text-2); margin-bottom: .6rem;
+      opacity: 0; animation: fadeUp .7s ease .45s forwards;
+    }
+    .hero-title .mep-hl  { color: var(--mep); font-weight: 600; }
+    .hero-title .sw-hl   { color: var(--sw);  font-weight: 600; }
+    .hero-title .sep     { color: var(--text-3); margin: 0 .5rem; }
+
+    .hero-sub {
+      font-size: clamp(.88rem, 1.4vw, 1.02rem); color: var(--text-2);
+      max-width: 540px; line-height: 1.8; margin-bottom: 2.6rem;
+      opacity: 0; animation: fadeUp .7s ease .6s forwards;
+    }
+
+    .hero-ctas {
+      display: flex; flex-wrap: wrap; gap: .7rem;
+      opacity: 0; animation: fadeUp .7s ease .78s forwards;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .7rem 1.45rem; border-radius: 8px;
+      font-size: .88rem; font-weight: 600; letter-spacing: .25px;
+      transition: all var(--trans); border: 1px solid transparent;
+    }
+    .btn-mep {
+      background: linear-gradient(135deg, var(--mep), #06b6d4);
+      color: var(--bg-0);
+    }
+    .btn-mep:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(34,211,238,.3); }
+
+    .btn-sw {
+      background: linear-gradient(135deg, var(--sw), #6366f1);
+      color: #fff;
+    }
+    .btn-sw:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(129,140,248,.3); }
+
+    .btn-ghost {
+      background: transparent; color: var(--text-2); border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--mep); color: var(--mep); background: rgba(34,211,238,.06); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      opacity: 0; animation: fadeIn 1s ease 1.6s forwards;
+    }
+    .hero-scroll-hint span {
+      font-family: var(--mono); font-size: .65rem;
+      letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-3);
+    }
+    .mouse {
+      width: 21px; height: 34px; border: 2px solid var(--text-3); border-radius: 10px;
+      display: flex; justify-content: center; padding-top: 5px;
+    }
+    .mouse::before {
+      content: ''; width: 3px; height: 7px;
+      background: var(--mep); border-radius: 2px;
+      animation: scrollPulse 1.5s ease infinite;
+    }
+
+    /* ─────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.05fr;
+      gap: 3.5rem; align-items: start;
+    }
+
+    .about-bio p {
+      font-size: .97rem; color: var(--text-2); line-height: 1.85;
+      margin-bottom: 1rem;
+    }
+    .about-bio strong { color: var(--text-1); }
+
+    .tag-row {
+      display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem;
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: .3rem;
+      padding: .3rem .8rem; border-radius: 20px; font-size: .77rem; font-weight: 500;
+    }
+    .tag-mep { background: rgba(34,211,238,.09); border: 1px solid rgba(34,211,238,.22); color: var(--mep); }
+    .tag-sw  { background: rgba(129,140,248,.09); border: 1px solid rgba(129,140,248,.22); color: var(--sw); }
+
+    /* Timeline */
+    .tl-label {
+      font-family: var(--mono); font-size: .68rem; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--mep);
+      margin-bottom: 1.3rem;
+    }
+
+    .tl { position: relative; padding-left: 1.4rem; margin-bottom: 2.25rem; }
+    .tl::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 4px;
+      width: 1px;
+      background: linear-gradient(180deg, var(--mep), var(--sw), transparent);
+    }
+
+    .tl-item { position: relative; margin-bottom: 1.75rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -1.4rem; top: 5px;
+      width: 8px; height: 8px; background: var(--mep); border-radius: 50%;
+      border: 2px solid var(--bg-1); box-shadow: 0 0 0 2px var(--mep);
+    }
+    .tl-date {
+      font-family: var(--mono); font-size: .68rem; color: var(--text-3);
+      letter-spacing: .8px; margin-bottom: .2rem;
+    }
+    .tl-title { font-size: .97rem; font-weight: 700; color: var(--text-1); margin-bottom: .1rem; }
+    .tl-org   { font-size: .88rem; font-weight: 500; color: var(--mep); margin-bottom: .3rem; }
+    .tl-desc  { font-size: .83rem; color: var(--text-3); line-height: 1.6; }
+
+    /* ─────────────────────────────────────────
+       PROJECT CARDS
+    ───────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.35rem;
+    }
+
+    .card {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.6rem 1.5rem 1.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--card-accent, var(--mep));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .card:hover { border-color: var(--border-hi); transform: translateY(-4px); box-shadow: 0 14px 35px rgba(0,0,0,.45); }
+    .card:hover::before { transform: scaleX(1); }
+
+    /* MEP cards → cyan accent; SW cards → violet accent */
+    #mep      .card { --card-accent: var(--mep); }
+    #software .card { --card-accent: var(--sw); }
+
+    .card-num {
+      font-family: var(--mono); font-size: .66rem; color: var(--text-3);
+      letter-spacing: 2px; margin-bottom: .65rem;
+    }
+    .card-title {
+      font-size: 1.08rem; font-weight: 700; color: var(--text-1);
+      margin-bottom: .7rem; line-height: 1.35;
+    }
+    .card-desc {
+      font-size: .85rem; color: var(--text-2); line-height: 1.72;
+      margin-bottom: 1rem;
+    }
+
+    .card-problem {
+      background: rgba(0,0,0,.28);
+      border-left: 2px solid var(--card-accent, var(--mep));
+      padding: .65rem .9rem; border-radius: 0 6px 6px 0;
+      margin-bottom: 1.1rem;
+    }
+    .card-problem-lbl {
+      font-family: var(--mono); font-size: .6rem; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--card-accent, var(--mep));
+      margin-bottom: .25rem;
+    }
+    .card-problem-txt { font-size: .82rem; color: var(--text-2); line-height: 1.6; }
+
+    .tool-row { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tool {
+      font-family: var(--mono); font-size: .68rem;
+      padding: .22rem .6rem; border-radius: 4px;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border);
+      color: var(--text-3); letter-spacing: .4px;
+    }
+
+    /* ─────────────────────────────────────────
+       SKILLS
+    ───────────────────────────────────────── */
+    .tab-bar {
+      display: flex; justify-content: center; gap: .5rem; margin-bottom: 2.8rem;
+    }
+    .tab-btn {
+      padding: .55rem 1.4rem; border-radius: 8px; font-size: .88rem; font-weight: 600;
+      cursor: pointer; border: 1px solid var(--border); background: transparent;
+      color: var(--text-3); transition: all var(--trans); letter-spacing: .3px;
+      font-family: var(--font);
+    }
+    .tab-btn[data-for="sw"][class*="active"], .tab-btn.active[data-for="sw"] {
+      background: rgba(129,140,248,.12); border-color: var(--sw); color: var(--sw);
+    }
+    .tab-btn[data-for="mep"][class*="active"], .tab-btn.active[data-for="mep"] {
+      background: rgba(34,211,238,.12); border-color: var(--mep); color: var(--mep);
+    }
+    .tab-btn:hover:not(.active) {
+      color: var(--text-2); border-color: var(--border-hi);
+    }
+
+    .skill-panel { display: none; }
+    .skill-panel.active { display: block; }
+
+    .skill-cat { margin-bottom: 2.2rem; }
+    .skill-cat-title {
+      font-family: var(--mono); font-size: .66rem; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-3);
+      padding-bottom: .55rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 1.1rem;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: .85rem;
+    }
+
+    .skill {
+      display: flex; flex-direction: column; align-items: center; gap: .55rem;
+      padding: .9rem .4rem; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 10px; transition: all var(--trans); cursor: default;
+    }
+    .skill:hover {
+      border-color: var(--border-hi); transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+    }
+
+    .skill-ico {
+      width: 44px; height: 44px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-weight: 800; font-size: .65rem;
+      text-align: center; line-height: 1.25; letter-spacing: .3px;
+      overflow: hidden;
+    }
+    .skill-ico img { width: 30px; height: 30px; object-fit: contain; }
+
+    .skill-lbl {
+      font-size: .72rem; font-weight: 500; color: var(--text-2);
+      text-align: center; line-height: 1.3;
+    }
+
+    /* Icon palette tokens */
+    .ico-cs    { background: rgba(104,33,122,.35);   color: #b47fe6; }
+    .ico-py    { background: rgba(55,118,171,.35);   color: #5aa8df; }
+    .ico-js    { background: rgba(240,219,79,.2);    color: #f0db4f; }
+    .ico-html  { background: rgba(220,75,26,.3);     color: #e2643b; }
+    .ico-css   { background: rgba(22,114,182,.35);   color: #2491db; }
+    .ico-sql   { background: rgba(0,116,144,.35);    color: #22d3ee; }
+    .ico-git   { background: rgba(240,80,50,.3);     color: #f05032; }
+    .ico-net   { background: rgba(104,33,122,.35);   color: #b47fe6; }
+    .ico-acad  { background: rgba(220,20,20,.3);     color: #ef4444; }
+    .ico-rvt   { background: rgba(0,90,160,.35);     color: #38bdf8; }
+    .ico-fire  { background: rgba(255,60,0,.3);      color: #fb923c; }
+    .ico-nfpa  { background: rgba(200,10,10,.3);     color: #f87171; }
+    .ico-nyc   { background: rgba(30,80,150,.35);    color: #60a5fa; }
+    .ico-hvac  { background: rgba(14,165,233,.3);    color: #38bdf8; }
+    .ico-plumb { background: rgba(20,184,166,.3);    color: #2dd4bf; }
+    .ico-elec  { background: rgba(234,179,8,.25);    color: #fbbf24; }
+    .ico-bim   { background: rgba(0,80,120,.35);     color: #22d3ee; }
+    .ico-vs    { background: rgba(0,120,215,.3);     color: #5c9fd8; }
+    .ico-nav   { background: rgba(0,86,179,.3);      color: #60a5fa; }
+    .ico-ash   { background: rgba(234,179,8,.25);    color: #ca8a04; }
+    .ico-dob   { background: rgba(239,68,68,.25);    color: #ef4444; }
+    .ico-ecc   { background: rgba(14,165,233,.25);   color: #0ea5e9; }
+    .ico-rest  { background: rgba(0,200,130,.2);     color: #34d399; }
+    .ico-rpt   { background: rgba(255,160,0,.2);     color: #fbbf24; }
+    .ico-flask { background: rgba(255,89,66,.2);     color: #ff5942; }
+    .ico-pd    { background: rgba(55,118,171,.25);   color: #5aa8df; }
+    .ico-gh    { background: rgba(200,200,200,.08);  color: #c0c0c0; }
+
+    /* ─────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────── */
+    #contact {
+      display: flex; align-items: center;
+    }
+    .contact-wrap {
+      max-width: 680px; margin: 0 auto; text-align: center; width: 100%;
+    }
+    .contact-tagline {
+      font-size: 1rem; color: var(--text-2); line-height: 1.8;
+      margin-bottom: 2.75rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+
+    .clink {
+      display: flex; flex-direction: column; align-items: center; gap: .7rem;
+      padding: 1.6rem 1rem; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: var(--radius); transition: all var(--trans); color: var(--text-2);
+    }
+    .clink:hover {
+      background: var(--bg-3); transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.4);
+      border-color: var(--cl-accent, var(--mep));
+      color: var(--cl-accent, var(--mep));
+    }
+    .clink-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .clink-icon svg { width: 20px; height: 20px; }
+    .clink-label { font-size: .88rem; font-weight: 700; }
+    .clink-sub   { font-size: .72rem; opacity: .55; }
+
+    .clink.email   { --cl-accent: var(--green); }
+    .clink.li      { --cl-accent: var(--mep); }
+    .clink.gh      { --cl-accent: var(--sw); }
+    .clink.resume  { --cl-accent: var(--amber); }
+
+    .contact-foot {
+      border-top: 1px solid var(--border); padding-top: 1.75rem;
+      font-family: var(--mono); font-size: .72rem; color: var(--text-3);
+    }
+
+    /* ─────────────────────────────────────────
+       SCROLL REVEAL
+    ───────────────────────────────────────── */
+    .rv {
+      opacity: 0; transform: translateY(26px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .rv.in { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────────────────────────────────
+       ANIMATIONS
+    ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%   { transform: translateY(0);  opacity: 1; }
+      100% { transform: translateY(7px); opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .nav-menu {
+        display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+        flex-direction: column; padding: 1rem;
+        background: rgba(7,13,27,.97); border-bottom: 1px solid var(--border);
+      }
+      .nav-menu.open { display: flex; }
+      .nav-burger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: calc(var(--nav-h) + 2.5rem) 1.25rem 2.5rem; }
+      .hero-name { letter-spacing: -1px; }
+    }
+    @media (max-width: 440px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .skill-grid { grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ── NAVBAR ── -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">YN<span style="color:var(--text-3)">.</span></a>
+    <ul class="nav-menu" id="nm">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mep">MEP</a></li>
+      <li><a href="#software">Software</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-glow-sw" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">// engineer · developer · problem solver</p>
+      <h1 class="hero-name"><span>Your Name</span></h1>
+      <p class="hero-title">
+        <span class="mep-hl">MEP Engineer</span>
+        <span class="sep">·</span>
+        <span class="sw-hl">Software Developer</span>
+      </p>
+      <p class="hero-sub">
+        Bridging the physical and digital — I design building systems that people rely on
+        and build software that engineers use every day.
+      </p>
+      <div class="hero-ctas">
+        <a href="#mep"      class="btn btn-mep">MEP Projects</a>
+        <a href="#software" class="btn btn-sw">Software Projects</a>
+        <a href="#about"    class="btn btn-ghost">About Me</a>
+        <a href="#contact"  class="btn btn-ghost">Contact</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="mouse"></div>
+      <span>scroll</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="sh rv">
+        <p class="sh-tag">// who I am</p>
+        <h2>About Me</h2>
+        <div class="sh-bar"></div>
+      </div>
+
+      <div class="about-grid">
+        <!-- Bio -->
+        <div class="about-bio rv">
+          <p>
+            I'm a <strong>dual-discipline engineer</strong> with a foundation in
+            MEP systems design and a growing depth in software development. My work
+            lives at the intersection of physical infrastructure and the digital tools
+            that power it.
+          </p>
+          <p>
+            In the field I design fire protection, HVAC, and plumbing systems governed
+            by NYC Building Code and NFPA standards. Behind the screen I build software
+            to streamline those same workflows — automating calculations, managing data,
+            and solving the problems that repetitive processes create.
+          </p>
+          <p>
+            I approach every challenge with an <strong>engineering mindset</strong>:
+            define the problem, understand the constraints, document the solution.
+          </p>
+
+          <div class="tag-row">
+            <span class="tag tag-mep">Fire Protection</span>
+            <span class="tag tag-mep">HVAC</span>
+            <span class="tag tag-mep">NYC Building Code</span>
+            <span class="tag tag-mep">NFPA 13 / 14</span>
+            <span class="tag tag-sw">C# / .NET</span>
+            <span class="tag tag-sw">Python</span>
+            <span class="tag tag-sw">Web Development</span>
+          </div>
+        </div>
+
+        <!-- Timelines -->
+        <div class="rv">
+          <p class="tl-label">// Education</p>
+          <div class="tl">
+            <div class="tl-item">
+              <p class="tl-date">2018 – 2022</p>
+              <p class="tl-title">B.S. in Mechanical Engineering</p>
+              <p class="tl-org">University Name</p>
+              <p class="tl-desc">Thermodynamics, fluid mechanics, and building systems design.</p>
+            </div>
+            <div class="tl-item">
+              <p class="tl-date">2023</p>
+              <p class="tl-title">Software Development Certification</p>
+              <p class="tl-org">Institution Name</p>
+              <p class="tl-desc">Full-stack development, C#, Python, and database design.</p>
+            </div>
+          </div>
+
+          <p class="tl-label">// Experience</p>
+          <div class="tl">
+            <div class="tl-item">
+              <p class="tl-date">2022 – Present</p>
+              <p class="tl-title">MEP Designer</p>
+              <p class="tl-org">Firm Name, New York</p>
+              <p class="tl-desc">Fire protection, plumbing, and mechanical systems for residential and commercial projects throughout NYC.</p>
+            </div>
+            <div class="tl-item">
+              <p class="tl-date">2020 – 2022</p>
+              <p class="tl-title">Engineering Intern</p>
+              <p class="tl-org">Firm Name, New York</p>
+              <p class="tl-desc">AutoCAD drafting and field coordination for active construction projects.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       MEP ENGINEERING
+  ══════════════════════════════════════════ -->
+  <section id="mep">
+    <div class="wrap">
+      <div class="sh rv">
+        <p class="sh-tag mep-c">// discipline one</p>
+        <h2>MEP Engineering</h2>
+        <div class="sh-bar mep-bar"></div>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="card rv">
+          <p class="card-num">// 01</p>
+          <h3 class="card-title">40-Story Residential Tower — Fire Protection</h3>
+          <p class="card-desc">
+            Full design of a wet-pipe sprinkler and Class I standpipe system for a
+            40-story mixed-use residential high-rise in Manhattan, compliant with
+            NFPA 13/14 and NYC Local Laws.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              High-rise systems require zone-by-zone hydraulic calculations across
+              extreme elevation changes with strict area density compliance at every floor.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">AutoCAD</span>
+            <span class="tool">Elite Fire</span>
+            <span class="tool">NFPA 13</span>
+            <span class="tool">NFPA 14</span>
+            <span class="tool">NYC Building Code</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card rv">
+          <p class="card-num">// 02</p>
+          <h3 class="card-title">Commercial HVAC Energy Retrofit</h3>
+          <p class="card-desc">
+            Redesign of mechanical HVAC systems for a 45,000 SF office building to
+            achieve NYC Energy Conservation Code compliance, targeting a 30% reduction
+            in energy consumption.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              Legacy rooftop units were oversized and non-compliant. The solution
+              required full load calculations, duct redesign, and coordination with
+              existing structural and electrical.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">AutoCAD MEP</span>
+            <span class="tool">Revit</span>
+            <span class="tool">ASHRAE 90.1</span>
+            <span class="tool">NYC ECC</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card rv">
+          <p class="card-num">// 03</p>
+          <h3 class="card-title">Mixed-Use Development — Full MEP Coordination</h3>
+          <p class="card-desc">
+            Complete MEP design and BIM coordination for an 8-story mixed-use building
+            with 60 residential units and ground-floor retail. Led clash detection
+            across all disciplines.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              Tight mechanical rooms and an aggressive schedule required parallel
+              design coordination across fire, plumbing, HVAC, and electrical — all
+              within a single BIM model.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">Revit MEP</span>
+            <span class="tool">Navisworks</span>
+            <span class="tool">AutoCAD</span>
+            <span class="tool">NFPA 13</span>
+            <span class="tool">NYC Building Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SOFTWARE DEVELOPMENT
+  ══════════════════════════════════════════ -->
+  <section id="software">
+    <div class="wrap">
+      <div class="sh rv">
+        <p class="sh-tag sw-c">// discipline two</p>
+        <h2>Software Development</h2>
+        <div class="sh-bar sw-bar"></div>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="card rv">
+          <p class="card-num">// 01</p>
+          <h3 class="card-title">Fire Protection Hydraulic Calculator</h3>
+          <p class="card-desc">
+            A desktop application that automates hydraulic calculations for sprinkler
+            systems — computing demand vs. supply curves, friction loss, and pressure
+            zone requirements with exportable outputs.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              Manual calculations took hours and were prone to transcription errors.
+              This tool reduced calculation time from hours to minutes with
+              audit-ready, formatted outputs.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">C#</span>
+            <span class="tool">WPF</span>
+            <span class="tool">.NET</span>
+            <span class="tool">SQLite</span>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card rv">
+          <p class="card-num">// 02</p>
+          <h3 class="card-title">Construction Document Tracker</h3>
+          <p class="card-desc">
+            A web application for managing RFIs, submittals, and construction documents
+            across multiple active projects — with status tracking, notifications,
+            and role-based access control.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              Teams managed document logs in shared spreadsheets, causing version
+              conflicts and missed deadlines. A centralized app replaced fragmented
+              workflows with real-time visibility.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">Python</span>
+            <span class="tool">Flask</span>
+            <span class="tool">PostgreSQL</span>
+            <span class="tool">HTML / CSS</span>
+            <span class="tool">JavaScript</span>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card rv">
+          <p class="card-num">// 03</p>
+          <h3 class="card-title">Automated Engineering Report Generator</h3>
+          <p class="card-desc">
+            A Python tool that pulls structured calculation data and auto-generates
+            formatted PDF engineering reports — cover pages, calculation tables,
+            and embedded code references included.
+          </p>
+          <div class="card-problem">
+            <p class="card-problem-lbl">Problem Solved</p>
+            <p class="card-problem-txt">
+              Report formatting was inconsistent across engineers and consumed
+              significant time per project. The generator enforces a standard format
+              and finishes in seconds from input data.
+            </p>
+          </div>
+          <div class="tool-row">
+            <span class="tool">Python</span>
+            <span class="tool">ReportLab</span>
+            <span class="tool">Pandas</span>
+            <span class="tool">openpyxl</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sh rv">
+        <p class="sh-tag">// what I use</p>
+        <h2>Skills &amp; Tools</h2>
+        <div class="sh-bar"></div>
+      </div>
+
+      <div class="tab-bar rv">
+        <button class="tab-btn active" data-for="sw" data-panel="sk-sw">Software Development</button>
+        <button class="tab-btn"        data-for="mep" data-panel="sk-mep">MEP Engineering</button>
+      </div>
+
+      <!-- SOFTWARE PANEL -->
+      <div class="skill-panel active" id="sk-sw">
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Languages</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-cs">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/csharp/csharp-original.svg" alt="C#"
+                     onerror="this.outerHTML='C#'">
+              </div>
+              <span class="skill-lbl">C#</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-py">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/python/python-original.svg" alt="Python"
+                     onerror="this.outerHTML='PY'">
+              </div>
+              <span class="skill-lbl">Python</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-js">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/javascript/javascript-original.svg" alt="JavaScript"
+                     onerror="this.outerHTML='JS'">
+              </div>
+              <span class="skill-lbl">JavaScript</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-html">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/html5/html5-original.svg" alt="HTML5"
+                     onerror="this.outerHTML='HTML'">
+              </div>
+              <span class="skill-lbl">HTML5</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-css">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/css3/css3-original.svg" alt="CSS3"
+                     onerror="this.outerHTML='CSS'">
+              </div>
+              <span class="skill-lbl">CSS3</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-sql">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/postgresql/postgresql-original.svg" alt="SQL"
+                     onerror="this.outerHTML='SQL'">
+              </div>
+              <span class="skill-lbl">SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Frameworks &amp; Libraries</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-net">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/dotnetcore/dotnetcore-original.svg" alt=".NET"
+                     onerror="this.outerHTML='.NET'">
+              </div>
+              <span class="skill-lbl">.NET</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-flask" style="font-size:.62rem;font-weight:800;">Flask</div>
+              <span class="skill-lbl">Flask</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-pd">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/pandas/pandas-original.svg" alt="Pandas"
+                     onerror="this.outerHTML='PD'">
+              </div>
+              <span class="skill-lbl">Pandas</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-vs" style="font-size:.62rem;font-weight:800;">WPF</div>
+              <span class="skill-lbl">WPF</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-rpt" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.2;">REPORT<br>LAB</div>
+              <span class="skill-lbl">ReportLab</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-rest" style="font-size:.6rem;font-weight:800;">REST</div>
+              <span class="skill-lbl">REST APIs</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Tools &amp; Platforms</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-git">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/git/git-original.svg" alt="Git"
+                     onerror="this.outerHTML='Git'">
+              </div>
+              <span class="skill-lbl">Git</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-gh">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/github/github-original.svg" alt="GitHub"
+                     style="filter:invert(.8)" onerror="this.outerHTML='GH'">
+              </div>
+              <span class="skill-lbl">GitHub</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-vs" style="font-size:.62rem;font-weight:800;">VS</div>
+              <span class="skill-lbl">Visual Studio</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-sql" style="opacity:.8;">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/icons/sqlite/sqlite-original.svg" alt="SQLite"
+                     onerror="this.outerHTML='SQLite'">
+              </div>
+              <span class="skill-lbl">SQLite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MEP PANEL -->
+      <div class="skill-panel" id="sk-mep">
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Design Software</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-acad" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">AUTO<br>CAD</div>
+              <span class="skill-lbl">AutoCAD</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-rvt" style="font-size:.62rem;font-weight:800;">REVIT</div>
+              <span class="skill-lbl">Revit MEP</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-fire" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">ELITE<br>FIRE</div>
+              <span class="skill-lbl">Elite Fire</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-nav" style="font-size:.55rem;font-weight:800;text-align:center;line-height:1.25;">NAVIS<br>WORKS</div>
+              <span class="skill-lbl">Navisworks</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-bim" style="font-size:.62rem;font-weight:800;">BIM</div>
+              <span class="skill-lbl">BIM</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Systems &amp; Disciplines</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-fire">
+                <!-- flame icon -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+                  <path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32C8.87 6.4 7.85 10.07 9.07 13.22c.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12-.06-.05-.1-.1-.14-.17C6.87 12.33 6.69 10.28 7.45 8.64 5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6C18.86 17.66 19.5 15 18.56 12.72l-.13-.26c-.21-.46-.77-1.26-.77-1.26z"/>
+                </svg>
+              </div>
+              <span class="skill-lbl">Fire Protection</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-hvac">
+                <!-- fan icon -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+                  <path d="M21 9h-5.47l4.16-4.16-1.42-1.42L13 8.63V3h-2v5.63L5.79 3.42 4.37 4.84 8.53 9H3v2h5.63L3.42 16.21l1.42 1.42L11 11.47V21h2v-9.53l6.16 6.16 1.42-1.42L15.47 11H21V9z"/>
+                </svg>
+              </div>
+              <span class="skill-lbl">HVAC</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-plumb">
+                <!-- pipe/plumbing icon -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+                  <path d="M12 2C10.34 2 9 3.34 9 5v7c-1.66 0-3 1.34-3 3v5c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2v-5c0-1.66-1.34-3-3-3V5c0-1.66-1.34-3-3-3zm1 8h-2V5c0-.55.45-1 1-1s1 .45 1 1v5z"/>
+                </svg>
+              </div>
+              <span class="skill-lbl">Plumbing</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-elec">
+                <!-- bolt/electrical icon -->
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
+                  <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                </svg>
+              </div>
+              <span class="skill-lbl">Electrical</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-cat rv">
+          <p class="skill-cat-title">Codes &amp; Standards</p>
+          <div class="skill-grid">
+            <div class="skill">
+              <div class="skill-ico ico-nyc" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">NYC<br>BC</div>
+              <span class="skill-lbl">NYC Building Code</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-nfpa" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">NFPA<br>13/14</div>
+              <span class="skill-lbl">NFPA 13 &amp; 14</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-ash" style="font-size:.55rem;font-weight:800;text-align:center;line-height:1.25;">ASHRAE<br>90.1</div>
+              <span class="skill-lbl">ASHRAE 90.1</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-ecc" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">NYC<br>ECC</div>
+              <span class="skill-lbl">NYC Energy Code</span>
+            </div>
+            <div class="skill">
+              <div class="skill-ico ico-dob" style="font-size:.58rem;font-weight:800;text-align:center;line-height:1.25;">DOB<br>NOW</div>
+              <span class="skill-lbl">DOB NOW</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-wrap">
+        <div class="sh rv">
+          <p class="sh-tag">// get in touch</p>
+          <h2>Let's Connect</h2>
+          <div class="sh-bar"></div>
+        </div>
+
+        <p class="contact-tagline rv">
+          Whether you have a building system to design, software to build,
+          or an engineering problem that needs both — I'm interested. Let's talk.
+        </p>
+
+        <div class="contact-grid rv">
+          <a href="mailto:your@email.com" class="clink email">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="22,7 12,13 2,7"/>
+              </svg>
+            </div>
+            <span class="clink-label">Email</span>
+            <span class="clink-sub">your@email.com</span>
+          </a>
+
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" class="clink li">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <span class="clink-label">LinkedIn</span>
+            <span class="clink-sub">linkedin.com/in/you</span>
+          </a>
+
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="clink gh">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              </svg>
+            </div>
+            <span class="clink-label">GitHub</span>
+            <span class="clink-sub">github.com/you</span>
+          </a>
+
+          <a href="resume.pdf" download class="clink resume">
+            <div class="clink-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="12" y1="18" x2="12" y2="12"/>
+                <polyline points="9 15 12 18 15 15"/>
+              </svg>
+            </div>
+            <span class="clink-label">Resume</span>
+            <span class="clink-sub">Download PDF</span>
+          </a>
+        </div>
+
+        <div class="contact-foot rv">
+          Built with HTML &nbsp;·&nbsp; CSS &nbsp;·&nbsp; JavaScript
+          &nbsp;·&nbsp; Your Name &nbsp;·&nbsp; 2024
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile nav ── */
+    const burger = document.getElementById('burger');
+    const nm     = document.getElementById('nm');
+
+    burger.addEventListener('click', () => nm.classList.toggle('open'));
+    nm.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nm.classList.remove('open')));
+
+    /* ── Active nav link ── */
+    const sects     = [...document.querySelectorAll('section[id]')];
+    const navLinks  = [...document.querySelectorAll('.nav-menu a')];
+
+    function updateActive() {
+      let cur = sects[0].id;
+      sects.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 90) cur = s.id;
+      });
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    }
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+
+    /* ── Scroll reveal ── */
+    const rvEls = document.querySelectorAll('.rv');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        // stagger siblings
+        const sibs = [...e.target.parentElement.querySelectorAll('.rv')];
+        const delay = sibs.indexOf(e.target) * 85;
+        setTimeout(() => e.target.classList.add('in'), delay);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    rvEls.forEach(el => io.observe(el));
+
+    /* ── Skills tabs ── */
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(btn.dataset.panel);
+        panel.classList.add('active');
+        // trigger reveal for newly shown panel
+        panel.querySelectorAll('.rv').forEach((el, i) => {
+          if (!el.classList.contains('in')) {
+            setTimeout(() => el.classList.add('in'), i * 85);
+          }
+        });
+      });
+    });
+
+    /* ── Smooth anchor scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+  </script>
+</body>
+</html>
