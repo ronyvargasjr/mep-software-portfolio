@@ -171,7 +171,7 @@ section {
 
 .hero-name {
   font-size: clamp(2.8rem, 8.5vw, 6.5rem);
-  font-weight: 900; line-height: .95; letter-spacing: -2px;
+  font-weight: 900; line-height: 1.25; letter-spacing: -2px;
   margin-bottom: 1.4rem;
   opacity: 0; animation: fadeUp .75s ease .3s forwards;
 }
