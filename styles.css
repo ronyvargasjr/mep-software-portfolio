@@ -386,6 +386,7 @@ section {
 .card-problem-txt { font-size: .82rem; color: var(--text-2); line-height: 1.6; }
 
 .tool-row { display: flex; flex-wrap: wrap; gap: .35rem; }
+.card-btn { margin-top: 1rem; align-self: flex-start; font-size: .8rem; padding: .45rem 1.1rem; }
 .tool {
   font-family: var(--mono); font-size: .68rem;
   padding: .22rem .6rem; border-radius: 4px;
